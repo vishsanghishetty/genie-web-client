@@ -61,7 +61,7 @@ const config: Configuration = {
   },
   devServer: {
     static: './dist',
-    port: 9001,
+    port: 9002, // Using 9002 to coexist with genie-plugin on 9001
     // Allow Bridge running in a container to connect to the plugin dev server.
     allowedHosts: 'all',
     headers: {
