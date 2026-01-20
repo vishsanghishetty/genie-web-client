@@ -33,7 +33,7 @@ import { MOCK_CONVERSATIONS, conversationToArtifact } from './mockData';
 import './ArtifactLibrary.css';
 
 const VIEW_MODE_STORAGE_KEY = 'genie-artifact-library-view-mode';
-const USE_MOCK_DATA = true; // Toggle to switch between mock and real API
+const USE_MOCK_DATA = false; // Toggle to switch between mock and real API
 
 export const artifactApi = {
   async fetchArtifacts(): Promise<Artifact[]> {
