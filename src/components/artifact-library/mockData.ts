@@ -129,7 +129,7 @@ export function conversationToArtifact(conversation: ConversationItem): Artifact
     id: conversation.conversation_id,
     conversationId: conversation.conversation_id,
     title: conversation.topic_summary,
-    description: `${conversation.message_count} messages • ${conversation.last_used_model}`,
+    description: '', // Backend doesn't provide description yet
     type: isCode ? 'code' : 'dashboard',
     createdAt: conversation.created_at,
     updatedAt: conversation.last_message_at,

@@ -89,14 +89,19 @@ export const ArtifactGrid: FunctionComponent<ArtifactGridProps> = ({ artifacts }
             </Label>
           </CardHeader>
           <CardTitle>{artifact.title}</CardTitle>
-          <CardBody className="artifact-card__body">{artifact.description}</CardBody>
+          <CardBody className="artifact-card__body">
+            {/* Description would go here if available from API */}
+          </CardBody>
           <CardFooter>
             <Flex gap={{ default: 'gapSm' }} alignItems={{ default: 'alignItemsCenter' }}>
               <FlexItem className="artifact-card__metadata">
                 {artifact.messageCount} {artifact.messageCount === 1 ? 'message' : 'messages'}
               </FlexItem>
+              <FlexItem className="artifact-card__metadata">•</FlexItem>
+              <FlexItem className="artifact-card__metadata">{artifact.model}</FlexItem>
+              <FlexItem className="artifact-card__metadata">•</FlexItem>
               <FlexItem className="artifact-card__timestamp">
-                • {formatRelativeTime(artifact.updatedAt)}
+                {formatRelativeTime(artifact.updatedAt)}
               </FlexItem>
             </Flex>
           </CardFooter>

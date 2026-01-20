@@ -28,7 +28,7 @@ export const ArtifactTable: FunctionComponent<ArtifactTableProps> = ({ artifacts
   const columnNames = {
     type: t('artifactLibrary.table.type'),
     name: t('artifactLibrary.table.name'),
-    description: t('artifactLibrary.table.description'),
+    model: 'Model',
     messages: 'Messages',
     updated: t('artifactLibrary.table.updated'),
   };
@@ -38,8 +38,8 @@ export const ArtifactTable: FunctionComponent<ArtifactTableProps> = ({ artifacts
       <Thead>
         <Tr>
           <Th>{columnNames.type}</Th>
-          <Th width={30}>{columnNames.name}</Th>
-          <Th width={40}>{columnNames.description}</Th>
+          <Th width={40}>{columnNames.name}</Th>
+          <Th width={20}>{columnNames.model}</Th>
           <Th width={10}>{columnNames.messages}</Th>
           <Th width={15}>{columnNames.updated}</Th>
           <Th />
@@ -60,9 +60,7 @@ export const ArtifactTable: FunctionComponent<ArtifactTableProps> = ({ artifacts
             <Td dataLabel={columnNames.name}>
               <strong>{artifact.title}</strong>
             </Td>
-            <Td dataLabel={columnNames.description} className="artifact-table__description">
-              {artifact.description}
-            </Td>
+            <Td dataLabel={columnNames.model}>{artifact.model}</Td>
             <Td dataLabel={columnNames.messages}>{artifact.messageCount}</Td>
             <Td dataLabel={columnNames.updated}>{formatRelativeTime(artifact.updatedAt)}</Td>
             <Td isActionCell>
