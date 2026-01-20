@@ -1,3 +1,84 @@
+/* Artifact Library Container */
+.artifact-library {
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+}
+
+.artifact-library__toolbar {
+    padding-block: var(--pf-t--global--spacer--md);
+    padding-inline: var(--pf-t--global--spacer--lg);
+    border-bottom: 1px solid var(--pf-t--global--border--color--default);
+}
+
+.artifact-library__content {
+    flex: 1;
+    overflow-y: auto;
+    padding: var(--pf-t--global--spacer--lg);
+}
+
+/* Grid View Styles */
+.artifact-grid {
+    --pf-v6-c-gallery--GridTemplateColumns--min: 280px;
+}
+
+.artifact-card {
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    transition: all 0.2s ease-in-out;
+}
+
+.artifact-card:hover {
+    transform: translateY(-2px);
+    box-shadow: var(--pf-t--global--box-shadow--md);
+}
+
+.artifact-card__body {
+    flex: 1;
+    overflow: hidden;
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;
+    text-overflow: ellipsis;
+    color: var(--pf-t--global--text--color--subtle);
+    font-size: var(--pf-t--global--font--size--sm);
+    line-height: var(--pf-t--global--font--line-height--body);
+}
+
+.artifact-card__metadata {
+    font-size: var(--pf-t--global--font--size--xs);
+    color: var(--pf-t--global--text--color--regular);
+}
+
+.artifact-card__timestamp {
+    font-size: var(--pf-t--global--font--size--xs);
+    color: var(--pf-t--global--text--color--subtle);
+}
+
+/* Table View Styles */
+.artifact-table {
+    --pf-v6-c-table--cell--PaddingBlock: var(--pf-t--global--spacer--md);
+}
+
+.artifact-table__row {
+    cursor: pointer;
+    transition: background-color 0.15s ease-in-out;
+}
+
+.artifact-table__row:hover {
+    background-color: var(--pf-t--global--background--color--secondary--hover);
+}
+
+.artifact-table__description {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    max-width: 500px;
+    color: var(--pf-t--global--text--color--subtle);
+}
+
+/* Error State */
 .artifact-library-error {
     --pf-v6-c-empty-state__title-text--FontSize: var(--pf-v6-global--FontSize--xl, 1.5rem);
 }
