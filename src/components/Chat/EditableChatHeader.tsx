@@ -1,4 +1,4 @@
-import { useRef, useState } from 'react';
+import { useRef, useState, useEffect } from 'react';
 import {
   ChatbotHeader,
   ChatbotHeaderMain,
@@ -16,13 +16,27 @@ import {
   Tooltip,
 } from '@patternfly/react-core';
 import { RhStandardThoughtBubbleIcon, CheckIcon, TimesIcon } from '@patternfly/react-icons';
+import { useParams } from 'react-router-dom-v5-compat';
+import { useActiveConversation } from '../../hooks/AIState';
 
 export const EditableChatHeader: React.FC = () => {
+  const { conversationId } = useParams<{ conversationId: string }>();
+  const activeConversation = useActiveConversation();
   const [isEditing, setIsEditing] = useState(false);
-  // TODO: Get title from API
   const [title, setTitle] = useState<string>('Chat title');
   const [error, setError] = useState<string | undefined>();
+  const [isSaving, setIsSaving] = useState(false);
   const originalTitleRef = useRef<string>(title);
+
+  // Fetch conversation title when conversation changes
+  useEffect(() => {
+    if (activeConversation?.id && conversationId === activeConversation.id) {
+      // Get topic summary from conversation metadata
+      const topicSummary = (activeConversation as any).topic_summary || 'Chat title';
+      setTitle(topicSummary);
+      originalTitleRef.current = topicSummary;
+    }
+  }, [activeConversation, conversationId]);
 
   const onEditClick = () => {
     originalTitleRef.current = title;
@@ -33,6 +47,40 @@ export const EditableChatHeader: React.FC = () => {
     setTitle(value);
     if (error && value.trim()) {
       setError(undefined);
+    }
+  };
+
+  const saveTitle = async (newTitle: string) => {
+    if (!conversationId) {
+      console.error('No conversation ID available');
+      return;
+    }
+
+    setIsSaving(true);
+    try {
+      // Call the API to update the conversation topic_summary
+      const response = await fetch(`http://localhost:8080/v1/conversations/${conversationId}`, {
+        method: 'PUT',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          topic_summary: newTitle,
+        }),
+      });
+
+      if (!response.ok) {
+        throw new Error(`Failed to update conversation: ${response.statusText}`);
+      }
+
+      // Success! Update the original ref so cancel works correctly
+      originalTitleRef.current = newTitle;
+      console.log('Conversation title updated successfully');
+    } catch (err) {
+      console.error('Failed to update conversation title:', err);
+      setError('Failed to save title. Please try again.');
+    } finally {
+      setIsSaving(false);
     }
   };
 
@@ -51,14 +99,17 @@ export const EditableChatHeader: React.FC = () => {
                   onChange={handleInputChange}
                   aria-label="Edit conversation title"
                   aria-invalid={!!error}
-                  onKeyDown={(e) => {
+                  onKeyDown={async (e) => {
                     if (e.key === 'Enter') {
                       const next = title.trim();
                       if (!next) {
                         setError('Title cannot be empty.');
                         return;
                       }
-                      setIsEditing(false);
+                      await saveTitle(next);
+                      if (!error) {
+                        setIsEditing(false);
+                      }
                     }
                   }}
                 />
@@ -81,13 +132,18 @@ export const EditableChatHeader: React.FC = () => {
                     variant="plain"
                     aria-label="Save title"
                     icon={<CheckIcon />}
-                    onClick={() => {
+                    isLoading={isSaving}
+                    isDisabled={isSaving}
+                    onClick={async () => {
                       const next = title.trim();
                       if (!next) {
                         setError('Title cannot be empty.');
                         return;
                       }
-                      setIsEditing(false);
+                      await saveTitle(next);
+                      if (!error) {
+                        setIsEditing(false);
+                      }
                     }}
                   />
                 </ActionListItem>
