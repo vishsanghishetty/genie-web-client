@@ -11,40 +11,31 @@
    Source: Michael Coker, PatternFly Team (Jan 22, 2026)
    
    Note: These tokens are provided for reference only.
-   PatternFly's default values are research-tested and should
-   be used unless there's a specific design requirement.
+   Overriding is NOT recommended. PatternFly's default values 
+   are research-tested and should be used unless there's a 
+   specific design requirement.
+   
+   These can be used for local testing/experimentation.
    
    Available customization tokens:
    ======================================== */
 /*
-:root.pf-v6-theme-glass {
-  Light theme customization tokens:
-  
-  --pf-t--global--light--glass--background--color--glass--default: [color];
-     Brute force override of glass background. Replaces entirely.
-     You would need to include your own opacity with this color override.
-  
-  --pf-t--global--light--glass--background--color--glass--color: [color];
-     Overrides just the background color in the color-mix() that includes the opacity value.
-  
-  --pf-t--global--light--glass--background--color--glass--opacity: 85%;
-     Overrides the background color opacity. Default: 85%
-  
-  --pf-t--global--light--glass--background--color--glass--filter: blur(12.5px);
-     Overrides the value passed to the CSS property backdrop-filter.
-     Default: blur(12.5px)
-}
+:root {
+  /* light theme tokens */
+  --pf-t--global--light--glass--background--color--glass--default: red; /* Brute force override of the glass background color. Replaces it entirely. You would need to include your own opacity with this color override. */
+  --pf-t--global--light--glass--background--color--glass--color: green; /* Overrides just the background color in the color-mix() that includes the opacity value. */
+  --pf-t--global--light--glass--background--color--glass--opacity: 50%; /* Overrides the background color opacity */
+  --pf-t--global--light--glass--background--color--glass--filter: blur(0px); /* Overrides the value passed to the CSS property backdrop-filter. Specifically, this overrides the existing blur(12.5px) value */
 
-:root.pf-v6-theme-glass.pf-v6-theme-dark {
-  Dark theme customization tokens:
-  
-  --pf-t--global--dark--glass--background--color--glass--default: [color];
-  --pf-t--global--dark--glass--background--color--glass--color: [color];
-  --pf-t--global--dark--glass--background--color--glass--opacity: 85%;
-  --pf-t--global--dark--glass--background--color--glass--filter: blur(12.5px);
+  /* dark theme tokens */
+  --pf-t--global--dark--glass--background--color--glass--default: red;
+  --pf-t--global--dark--glass--background--color--glass--color: green;
+  --pf-t--global--dark--glass--background--color--glass--opacity: 50%;
+  --pf-t--global--dark--glass--background--color--glass--filter: blur(0px);
 }
 */
 /* ======================================== */
+
 
 /* fallback for users with reduced transparency enabled */
 @media (prefers-reduced-transparency: reduce) {
