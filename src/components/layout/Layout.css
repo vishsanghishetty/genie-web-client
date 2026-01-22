@@ -5,41 +5,6 @@
   background-repeat: no-repeat;
 }
 
-
-/* ========================================
-   PATTERNFLY GLASS THEME TOKENS (Reference)
-   
-   Source: Michael Coker, PatternFly Team (Jan 22, 2026)
-   
-   Michael's message: "FWIW below are the tokens you can customize. 
-   Feel free to check these out, but wanted to send this to you 
-   before our call in case you wanted to test it on your own."
-   
-   Note: Overriding is NOT recommended. PatternFly's default values 
-   are research-tested and should be used unless there's a specific 
-   design requirement. These can be used for local testing/experimentation.
-   
-   To test: Remove the comment markers around the :root block below.
-   ======================================== */
-/*
-:root {
-  light theme tokens
-  --pf-t--global--light--glass--background--color--glass--default: red; Brute force override of the glass background color. Replaces it entirely. You would need to include your own opacity with this color override.
-  --pf-t--global--light--glass--background--color--glass--color: green; Overrides just the background color in the color-mix() that includes the opacity value.
-  --pf-t--global--light--glass--background--color--glass--opacity: 50%; Overrides the background color opacity
-  --pf-t--global--light--glass--background--color--glass--filter: blur(0px); Overrides the value passed to the CSS property backdrop-filter. Specifically, this overrides the existing blur(12.5px) value
-
-  dark theme tokens
-  --pf-t--global--dark--glass--background--color--glass--default: red;
-  --pf-t--global--dark--glass--background--color--glass--color: green;
-  --pf-t--global--dark--glass--background--color--glass--opacity: 50%;
-  --pf-t--global--dark--glass--background--color--glass--filter: blur(0px);
-}
-*/
-/* ======================================== */
-
-
-
 /* fallback for users with reduced transparency enabled */
 @media (prefers-reduced-transparency: reduce) {
   :root.pf-v6-theme-glass {
@@ -77,7 +42,7 @@
 }
 
 .global-layout-nav .pf-v6-c-nav__link {
-  /* using patternfly design tokens for theme support */
+  /* pf tokens for theme support */
   --pf-v6-c-nav__link--Color: var(--pf-t--global--text--color--subtle);
   --pf-v6-c-nav__link--hover--Color: var(--pf-t--global--text--color--regular);
   --pf-v6-c-nav__link--m-current--Color: var(--pf-t--global--text--color--brand--default);
@@ -100,18 +65,19 @@
   }
 }
 
-/* drawer heading styles */
-.drawer-heading {
-  display: flex;
-  align-items: center;
-  gap: var(--pf-t--global--spacer--md);
-}
-
-.drawer-heading__icon {
-  display: flex;
-  align-items: center;
-}
-
-.drawer-heading__text {
-  flex: 1;
+.genie-layout .pf-v6-c-drawer__panel {
+  & .drawer-heading {
+    display: flex;
+    align-items: center;
+    gap: var(--pf-v5-global--spacer--md, 1rem);
+  
+    & .drawer-heading__icon {
+      display: flex;
+      align-items: center;
+    }
+  
+    & .drawer-heading__text {
+      flex: 1;
+    }
+  }
 }
