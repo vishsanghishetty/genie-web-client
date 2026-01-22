@@ -5,48 +5,39 @@
   background-repeat: no-repeat;
 }
 
+
 /* ========================================
    PATTERNFLY GLASS THEME TOKENS (Reference)
    
    Source: Michael Coker, PatternFly Team (Jan 22, 2026)
    
-   Note: These tokens are provided for reference only.
-   Overriding is NOT recommended. PatternFly's default values 
-   are research-tested and should be used unless there's a 
-   specific design requirement.
+   Michael's message: "FWIW below are the tokens you can customize. 
+   Feel free to check these out, but wanted to send this to you 
+   before our call in case you wanted to test it on your own."
    
-   These can be used for local testing/experimentation.
+   Note: Overriding is NOT recommended. PatternFly's default values 
+   are research-tested and should be used unless there's a specific 
+   design requirement. These can be used for local testing/experimentation.
    
-   Available customization tokens:
-   
-   Light theme:
-   - --pf-t--global--light--glass--background--color--glass--default
-     Brute force override of glass background. Replaces entirely.
-     You would need to include your own opacity with this override.
-   
-   - --pf-t--global--light--glass--background--color--glass--color
-     Overrides just the background color in color-mix() that includes opacity.
-   
-   - --pf-t--global--light--glass--background--color--glass--opacity
-     Overrides the background color opacity. Default: 85%
-   
-   - --pf-t--global--light--glass--background--color--glass--filter
-     Overrides the backdrop-filter value. Default: blur(12.5px)
-   
-   Dark theme has equivalent tokens with --dark-- instead of --light--
-   
-   Example (uncomment to test):
+   To test: Remove the comment markers around the :root block below.
    ======================================== */
 /*
 :root {
-  --pf-t--global--light--glass--background--color--glass--opacity: 50%;
-  --pf-t--global--light--glass--background--color--glass--filter: blur(0px);
-  
+  light theme tokens
+  --pf-t--global--light--glass--background--color--glass--default: red; Brute force override of the glass background color. Replaces it entirely. You would need to include your own opacity with this color override.
+  --pf-t--global--light--glass--background--color--glass--color: green; Overrides just the background color in the color-mix() that includes the opacity value.
+  --pf-t--global--light--glass--background--color--glass--opacity: 50%; Overrides the background color opacity
+  --pf-t--global--light--glass--background--color--glass--filter: blur(0px); Overrides the value passed to the CSS property backdrop-filter. Specifically, this overrides the existing blur(12.5px) value
+
+  dark theme tokens
+  --pf-t--global--dark--glass--background--color--glass--default: red;
+  --pf-t--global--dark--glass--background--color--glass--color: green;
   --pf-t--global--dark--glass--background--color--glass--opacity: 50%;
   --pf-t--global--dark--glass--background--color--glass--filter: blur(0px);
 }
 */
 /* ======================================== */
+
 
 
 /* fallback for users with reduced transparency enabled */
